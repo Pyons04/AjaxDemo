@@ -23,10 +23,9 @@ class ArticlesController < ApplicationController
        @departments = "invaild input"
      end
 
-     respond_to do |format| 
-      format.html
-      format.json { render json: @departments}
-    end
+     respond_to do |format|
+      format.js
+     end
   end
 
   def index

@@ -1,26 +1,26 @@
-
-
 <%= select_tag "univerisities", grouped_options_for_select(Article::SELECT_UNIVERSITIES,nil,prompt: "大学を選択してください。") %>
+<div id="replace">
+<%= render :partial => "select_department" %>
+</div>
 
 <script>
 $(function (){
     $("#univerisities").change(function(){
         var value = $("#univerisities").val();
-        console.log('valuse changes has been detected.')
 
       function getParam(){return $.ajax({
              url: "/articles/ajax_department",
              type: "GET",
              data: {id: value},
-             dataType: "json",
+             dataType: "script",
              success: function(data) {alert("success");},
              error: function(data) {alert("error");}
          });}
 
          getParam().done(function(result) {
-            console.log(result)
+            console.log(result);
         }).fail(function(result) {
-           console.log('fail')
+           console.log(result)
         });
     })
 })

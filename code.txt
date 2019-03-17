@@ -1,0 +1,26 @@
+$("#department").html("j(<%= select_tag "department" , grouped_options_for_select(@departments,nil,prompt: "Šw•”‚ð‘I‘ð‚¹‚æB") %>)");
+
+<if false>
+<script>
+$(function (){
+    $("#univerisities").change(function(){
+        var value = $("#univerisities").val();
+
+      function getParam(){return $.ajax({
+             url: "/articles/ajax_department",
+             type: "GET",
+             data: {id: value},
+             dataType: "script",
+             success: function(data) {alert("success");},
+             error: function(data) {alert("error");}
+         });}
+
+         getParam().done(function(result) {
+            console.log(result);
+        }).fail(function(result) {
+           console.log(result)
+        });
+    })
+})
+</script>
+<end>

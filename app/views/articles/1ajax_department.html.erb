@@ -1,0 +1,4 @@
+<script>
+$("#department").html("<%= select_tag "department" , grouped_options_for_select(@departments,nil,prompt: "学部を選択せよ。") %>");
+console.log('render partial is now renderd.');
+</script>
