@@ -1,6 +1,32 @@
+require 'pry'
 class ArticlesController < ApplicationController   
   def new
     @article = Article.new
+  end
+
+  def ajax_department
+
+    case params[:id].to_i
+     when 1 then
+       @departments = Article::MEIJI_UNI
+     when 2 then
+       @departments = Article::RIKKYO_UNI
+     when 3 then
+       @departments =Article::AOYAMA_UNI
+     when 4 then 
+       @departments = Article::HOUSEI_UNI
+     when 5 then
+       @departments = Article::CHUO_UNI
+     when 6 then
+       @departments = Article::GAKUSHU_UNI
+     else
+       @departments = "invaild input"
+     end
+
+     respond_to do |format| 
+      format.html
+      format.json { render json: @departments}
+    end
   end
 
   def index
@@ -8,6 +34,7 @@ class ArticlesController < ApplicationController
   end
 
   def show 
+    # this is new comment.
     @article = Article.find(params[:id])
   end
 

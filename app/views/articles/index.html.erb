@@ -1,15 +1,27 @@
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th></th>
-  </tr>
- 
-  <% @articles.each do |article| %>
-    <tr>
-      <td><%= article.title %></td>
-      <td><%= article.text %></td>
-      <td><%= link_to 'Show', article_path(article) %></td>
-    </tr>
-  <% end %>
-</table>
+
+
+<%= select_tag "univerisities", grouped_options_for_select(Article::SELECT_UNIVERSITIES,nil,prompt: "大学を選択してください。") %>
+
+<script>
+$(function (){
+    $("#univerisities").change(function(){
+        var value = $("#univerisities").val();
+        console.log('valuse changes has been detected.')
+
+      function getParam(){return $.ajax({
+             url: "/articles/ajax_department",
+             type: "GET",
+             data: {id: value},
+             dataType: "json",
+             success: function(data) {alert("success");},
+             error: function(data) {alert("error");}
+         });}
+
+         getParam().done(function(result) {
+            console.log(result)
+        }).fail(function(result) {
+           console.log('fail')
+        });
+    })
+})
+</script>
