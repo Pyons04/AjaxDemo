@@ -3,6 +3,14 @@
 <%= render :partial => "select_department" %>
 </div>
 
+<% [1,2,3,4,5].each do |line| %>
+   <% @nextNum = 1 %>
+   <%= render :partial => "form_line", locals: {:nuxtNum => @nextNum} %>
+<% end %>
+
+<%= select :company, :name , Article::COMPANY  %>
+
+
 <script>
 $(function (){
     $("#univerisities").change(function(){
@@ -18,10 +26,34 @@ $(function (){
          });}
 
          getParam().done(function(result) {
-            console.log(result);
+            console.log("Yeah!");
         }).fail(function(result) {
-           console.log(result)
+           console.log("Hum..")
         });
     })
 })
+
+
+$(function (){
+    $("#company_name").change(function(){
+      var value = $("#univerisities2").val();
+
+      function changeNum(){return $.ajax({
+             url: "/articles/ajax_button",
+             type: "GET",
+             data: {id: 100},
+             dataType: "script",
+             success: function(data) {alert("success!");},
+             error: function(data) {alert("error!");}
+         });}
+    
+         changeNum().done(function(result) {
+            console.log("Yeah!");
+        }).fail(function(result) {
+           console.log("Hum..")
+        });
+
+    })
+})
+
 </script>

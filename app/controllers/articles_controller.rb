@@ -28,6 +28,15 @@ class ArticlesController < ApplicationController
      end
   end
 
+  def ajax_button 
+    @nextNum = params[:id].to_i *10
+    puts "This is #{@nextNum}."
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def index
     @articles = Article.all
   end
